@@ -7,9 +7,21 @@
   </div>
 </div>
 
-<div class="episode-grid-archive">
-  {{ $episodes := sort .Pages "Params.episode" "desc" }}
-  {{ range $episodes }}
+{{ $allEpisodes := sort .Pages "Params.episode" "desc" }}
+{{ $seasons := slice }}
+{{ range $allEpisodes }}
+  {{ $s := .Params.season | default 1 }}
+  {{ if not (in $seasons $s) }}
+    {{ $seasons = $seasons | append $s }}
+  {{ end }}
+{{ end }}
+{{ $seasons = sort $seasons "value" "desc" }}
+
+{{ range $season := $seasons }}
+<div class="season-section">
+  <h2 class="season-heading">Season {{ $season }}</h2>
+  <div class="episode-grid-archive">
+  {{ range where $allEpisodes "Params.season" $season }}
   <article class="ep-card">
     <a href="{{ .RelPermalink }}" class="ep-card-image-link">
       <div class="ep-card-image">
@@ -20,7 +32,7 @@
           <span>ᚱ</span>
         </div>
         {{ end }}
-        {{ with .Params.episode }}<span class="episode-badge">S{{ printf "%02d" ($.Params.season | default 1) }}E{{ printf "%02d" . }}</span>{{ end }}
+        {{ with .Params.episode }}<span class="episode-badge">S{{ printf "%02d" ($season) }}E{{ printf "%02d" . }}</span>{{ end }}
       </div>
     </a>
     <div class="ep-card-body">
@@ -55,6 +67,8 @@
     </div>
   </article>
   {{ end }}
+  </div>
 </div>
+{{ end }}
 
 {{ end }}

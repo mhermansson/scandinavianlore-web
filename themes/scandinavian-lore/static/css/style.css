@@ -880,10 +880,33 @@ nav li ul a:hover {
 }
 
 /* ── Episode grid archive ───────────────────────────────────── */
+.season-section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.season-section + .season-section {
+  margin-top: 1rem;
+}
+
+.season-heading {
+  padding-top: 3rem;
+  margin-bottom: 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--tan);
+  letter-spacing: 0.04em;
+}
+
+.season-section:first-child .season-heading {
+  padding-top: 3rem;
+}
+
 .episode-grid-archive {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 3rem 2rem 5rem;
+  padding: 2rem 0 3rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem 2rem;
@@ -2404,7 +2427,8 @@ html.js .ep-card:nth-child(n+6), html.js .glossary-card:nth-child(n+6) { transit
   .hero h1 { font-size: 2rem; }
   .hero-artwork { width: 200px; height: 200px; }
   .episode-thumbs { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  .episode-grid-archive { grid-template-columns: 1fr; gap: 2rem 0; padding: 2rem 1.25rem; }
+  .season-section { padding: 0 1.25rem; }
+  .episode-grid-archive { grid-template-columns: 1fr; gap: 2rem 0; padding: 2rem 0; }
   .patreon-banner { padding: 4rem 1.25rem; }
   .host-section-inner { padding: 3rem 1.25rem; }
   .news-row { grid-template-columns: 1fr; gap: 1rem; }

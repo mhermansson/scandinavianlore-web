@@ -20,6 +20,7 @@
           <span>ᚱ</span>
         </div>
         {{ end }}
+        {{ with .Params.episode }}<span class="episode-badge">S{{ printf "%02d" ($.Params.season | default 1) }}E{{ printf "%02d" . }}</span>{{ end }}
       </div>
     </a>
     <div class="ep-card-body">

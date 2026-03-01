@@ -1,0 +1,35 @@
+{{ define "content" }}
+
+<div class="page-header page-header--center">
+  <div class="page-header-inner">
+    <span class="page-eyebrow">{{ .Data.Singular }}</span>
+    <h1>{{ .Title }}</h1>
+  </div>
+</div>
+
+<div class="episode-grid-archive">
+  {{ range .Pages }}
+  <article class="ep-card">
+    <a href="{{ .RelPermalink }}" class="ep-card-image-link">
+      <div class="ep-card-image">
+        {{ if .Params.thumb }}
+        <img src="{{ .Params.thumb }}" alt="{{ .Title }}">
+        {{ else }}
+        <div class="ep-card-image-placeholder">
+          <span>ᚱ</span>
+        </div>
+        {{ end }}
+      </div>
+    </a>
+    <div class="ep-card-body">
+      <h2 class="ep-card-title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h2>
+      <p class="ep-card-excerpt">{{ .Description | default .Summary }}</p>
+      <a href="{{ .RelPermalink }}" class="ep-card-readmore">Read More</a>
+    </div>
+  </article>
+  {{ end }}
+</div>
+
+{{ end }}

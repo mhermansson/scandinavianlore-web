@@ -1,0 +1,19 @@
+{{ define "content" }}
+
+<div class="episode-hero">
+  <div class="episode-hero-inner">
+    <span class="page-eyebrow">Guide</span>
+    <h1 class="episode-title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="episode-summary">{{ . }}</p>{{ end }}
+  </div>
+</div>
+
+<div class="content-body">
+  {{ .Content }}
+
+  <div class="content-back-link">
+    <a href="/guides/" class="btn btn-secondary">← All guides</a>
+  </div>
+</div>
+
+{{ end }}

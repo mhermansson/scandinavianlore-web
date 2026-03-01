@@ -1,0 +1,56 @@
+{{ define "content" }}
+
+<div class="page-header page-header--center">
+  <div class="page-header-inner">
+    <span class="page-eyebrow">Browsing Category</span>
+    <h1>{{ .Title }}</h1>
+  </div>
+</div>
+
+<div class="news-list-wrap">
+  {{ range .Pages }}
+  <article class="news-row">
+    <a href="{{ .RelPermalink }}" class="news-row-image-link">
+      <div class="news-row-image">
+        {{ if .Params.thumb }}
+        <img src="{{ .Params.thumb }}" alt="{{ .Title }}">
+        {{ else }}
+        <div class="news-row-image-placeholder"><span>ᚦ</span></div>
+        {{ end }}
+      </div>
+    </a>
+    <div class="news-row-body">
+      <h2 class="news-row-title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h2>
+      <div class="news-row-meta">
+        <span class="ep-card-tag">News</span>
+        {{ if .PublishDate }}
+        <span class="ep-card-date">{{ .PublishDate.Format "January 2, 2006" }}</span>
+        {{ end }}
+        <span class="share-wrap">
+          <button class="ep-card-share" onclick="toggleShare(this)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+          </button>
+          <span class="share-pop">
+            <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+            <button onclick="copyLink('{{ .Permalink }}', this)" aria-label="Copy link">🔗</button>
+          </span>
+        </span>
+        {{ with .Params.likes }}
+        <span class="ep-card-likes">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          {{ . }}
+        </span>
+        {{ end }}
+      </div>
+      <p class="news-row-excerpt">{{ .Description | default .Summary }}</p>
+      <a href="{{ .RelPermalink }}" class="ep-card-readmore">Read More</a>
+    </div>
+  </article>
+  {{ end }}
+</div>
+
+{{ end }}

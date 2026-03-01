@@ -1,0 +1,14 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": {{ .Title | jsonify }},
+  "description": {{ .Description | default .Summary | plainify | jsonify }},
+  "url": {{ .Permalink | jsonify }},
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "Scandinavian Lore Glossary",
+    "url": {{ (print .Site.BaseURL "glossary/") | jsonify }}
+  }
+}
+</script>

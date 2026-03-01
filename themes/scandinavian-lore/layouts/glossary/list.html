@@ -1,0 +1,21 @@
+{{ define "content" }}
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <span class="page-eyebrow">Reference</span>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="page-header-desc">{{ . }}</div>{{ end }}
+  </div>
+</div>
+
+<div class="glossary-grid">
+  {{ range .Pages }}
+  <a href="{{ .RelPermalink }}" class="glossary-card">
+    <div class="glossary-term">{{ .Title }}</div>
+    {{ with .Params.pronunciation }}<div class="glossary-pronunciation">{{ . }}</div>{{ end }}
+    <div class="glossary-def">{{ .Description | default .Summary }}</div>
+  </a>
+  {{ end }}
+</div>
+
+{{ end }}

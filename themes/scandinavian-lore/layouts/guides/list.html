@@ -1,0 +1,21 @@
+{{ define "content" }}
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <span class="page-eyebrow">Deep Dives</span>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="page-header-desc">{{ . }}</div>{{ end }}
+  </div>
+</div>
+
+<div class="guides-grid">
+  {{ range .Pages }}
+  <div class="guide-card">
+    <h3>{{ .Title }}</h3>
+    <p>{{ .Description | default .Summary }}</p>
+    <a href="{{ .RelPermalink }}" class="guide-card-link">Read guide</a>
+  </div>
+  {{ end }}
+</div>
+
+{{ end }}

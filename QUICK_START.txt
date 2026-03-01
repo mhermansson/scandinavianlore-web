@@ -1,0 +1,147 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║              SCANDINAVIAN LORE POD — HUGO SITE READY                       ║
+║                         Quick Start Guide                                  ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+PROJECT LOCATION:
+  /Users/marcus/git/scandinavianlore-web/
+
+WHAT'S READY:
+  ✓ Custom Hugo theme (warm/earthy aesthetic)
+  ✓ 3 complete episodes (S01E01, S01E02, S01E03)
+  ✓ 11 glossary terms with Old Norse pronunciation
+  ✓ 1 sample guide (Understanding Norse Cosmology)
+  ✓ Responsive design (desktop & mobile)
+  ✓ Full deployment setup (Git + nginx)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: INSTALL HUGO (One time only)
+  
+  brew install hugo
+  hugo version    # Verify it worked
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 2: RUN LOCALLY
+
+  cd /Users/marcus/git/scandinavianlore-web
+  ./start-dev.sh
+
+  Then open your browser to: http://localhost:1313
+
+  You'll see:
+    • Homepage with featured episodes
+    • All 3 episode pages (with show notes)
+    • Glossary with pronunciation guides
+    • About page
+    • Sample guide
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 3: EXPLORE & CUSTOMIZE
+
+  Content files (all in Markdown):
+    content/episodes/s01e01-ginnungagap.md
+    content/episodes/s01e02-yggdrasil.md
+    content/episodes/s01e03-nine-worlds.md
+    content/glossary/*.md
+    content/guides/norse-cosmology.md
+
+  Styling (if you want to change colors):
+    themes/scandinavian-lore/static/css/style.css
+
+  Configuration:
+    hugo.toml  (site title, podcast links, colors, etc.)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ADDING NEW CONTENT
+
+  New Episode:
+    1. Copy content/episodes/TEMPLATE.md
+    2. Rename to s01e04-title.md
+    3. Fill in the frontmatter and content
+    4. Save and reload browser (Hugo watches for changes)
+
+  New Glossary Term:
+    1. Create content/glossary/term-name.md
+    2. Use existing terms as template
+    3. Include pronunciation in frontmatter
+    4. Save and watch it appear
+
+  New Guide:
+    1. Create content/guides/guide-name.md
+    2. Write in Markdown
+    3. Tag related episodes
+    4. Save and it's live
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DEPLOYMENT TO YOUR SERVER
+
+  See: README.md (full deployment guide)
+  See: deploy.sh (helper script)
+
+  Quick version:
+    1. One-time server setup (create Git repo, post-receive hook)
+    2. git init (local)
+    3. git add . && git commit -m "Initial commit"
+    4. git remote add production ssh://your-server
+    5. git push production master
+    6. Site auto-builds and deploys!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DOCUMENTATION
+
+  SETUP_SUMMARY.md    ← Overview of what's built
+  README.md           ← Full technical documentation
+  LAUNCH_CHECKLIST.md ← Pre-launch tasks
+  deploy.sh           ← Deployment helper
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHY HUGO INSTEAD OF WORDPRESS?
+
+  ✓ No database (files only)
+  ✓ No security updates needed
+  ✓ Fast (static HTML, no PHP)
+  ✓ Version control with Git
+  ✓ Auto-deploy on git push
+  ✓ Easy to backup and move
+  ✓ Cheap hosting (any server with nginx)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESIGN
+
+  Color Palette (warm/earthy):
+    Primary:    #3d2817 (dark brown)
+    Secondary:  #8b6f47 (warm tan)
+    Accent:     #c4a57b (light sand)
+    Background: #f5f1e8 (cream)
+
+  Responsive Design:
+    Works on desktop, tablet, mobile
+    All interactive elements tested
+    Fast load times
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+NEXT STEPS
+
+  1. Install Hugo:        brew install hugo
+  2. Run locally:         ./start-dev.sh
+  3. Explore the site:    http://localhost:1313
+  4. Read README.md:      Full setup & deployment
+  5. Add content:         Create new episodes, guides, glossary terms
+  6. Deploy:              Push to your server when ready
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Questions? See README.md or check Hugo docs: https://gohugo.io
+
+Built: February 28, 2026
+Framework: Hugo (Static Site Generator)
+Status: Ready for launch

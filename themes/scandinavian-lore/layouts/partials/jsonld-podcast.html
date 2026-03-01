@@ -1,0 +1,19 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastSeries",
+  "name": {{ .Site.Params.podcastTitle | jsonify }},
+  "description": {{ .Site.Params.podcastDescription | jsonify }},
+  "url": {{ .Site.BaseURL | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ .Site.Params.podcastAuthor | jsonify }}
+  }
+  {{- with .Site.Params.podcastImage }},
+  "image": {{ . | absURL | jsonify }}
+  {{- end }}
+  {{- with .Site.Params.social.spotify }},
+  "webFeed": {{ . | jsonify }}
+  {{- end }}
+}
+</script>

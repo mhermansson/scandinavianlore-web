@@ -1,0 +1,86 @@
+baseURL = "https://scandinavianlorepod.com/"
+languageCode = "en-us"
+title = "Scandinavian Lore"
+theme = "scandinavian-lore"
+buildFuture = true
+enableRobotsTXT = true
+outputFormats.RSS.mediatype = "application/rss+xml"
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[params]
+  author = "Marcus Hermansson"
+  description = "A narrative deep-dive podcast about Norse mythology, Scandinavian folklore, and the cultural heritage of the North."
+  keywords = "Norse mythology, Scandinavian folklore, podcast, Yggdrasil, Eddas"
+  
+  # Podcast metadata
+  podcastTitle = "Scandinavian Lore Pod"
+  podcastDescription = "A narrative deep-dive into Norse mythology, broader Scandinavian folklore, including Finnish, Sámi, and regional Nordic traditions."
+  podcastAuthor = "Marcus Hermansson"
+  podcastImage = "images/podcast-cover.jpg"
+  podcastCategory = "History"
+  podcastSubCategory = ""
+  podcastExplicit = "false"
+  podcastLanguage = "en-us"
+  # podcastEmail = "hello@scandinavianlorepod.com"
+
+  # Social links
+  [params.social]
+    spotify = "https://open.spotify.com/show/0UfNJ2DoIfIveU2hghm1Io"
+    apple = "https://podcasts.apple.com/us/podcast/scandinavian-lore/id1234567890"  # TODO: replace with real Apple Podcasts URL
+    twitter = "@ScandLorePod"
+
+  # Patreon
+  patreonURL = "https://www.patreon.com"
+
+  # Testimonial (homepage + about page)
+  testimonial = "This is the Norse mythology podcast I've been waiting for. Deep, respectful, and beautifully told — like sitting by the fire with a scholar who's also a born storyteller."
+  testimonialAuthor = "A Listener"
+  testimonialSource = "via Apple Podcasts"
+    
+  # Theme colors (warm/earthy palette)
+  [params.colors]
+    primary = "#3d2817"      # Dark brown
+    secondary = "#8b6f47"    # Warm tan
+    accent = "#c4a57b"       # Light sand
+    background = "#f5f1e8"   # Cream
+    text = "#2c2416"         # Dark charcoal
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Episodes"
+    url = "/episodes/"
+    weight = 2
+  [[menu.main]]
+    name = "Guides"
+    url = "/guides/"
+    weight = 3
+  [[menu.main]]
+    name = "Glossary"
+    url = "/glossary/"
+    weight = 4
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 5
+    identifier = "about"
+  [[menu.main]]
+    name = "News"
+    url = "/news/"
+    weight = 52
+    parent = "about"
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 53
+    parent = "about"
+
+[taxonomies]
+  season = "seasons"
+  region = "regions"
+  tag = "tags"

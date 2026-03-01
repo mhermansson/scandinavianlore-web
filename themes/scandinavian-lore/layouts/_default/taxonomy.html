@@ -1,0 +1,19 @@
+{{ define "content" }}
+
+<div class="page-header page-header--center">
+  <div class="page-header-inner">
+    <span class="page-eyebrow">Browse by</span>
+    <h1>{{ .Title }}</h1>
+  </div>
+</div>
+
+<div class="glossary-grid">
+  {{ range .Pages }}
+  <a href="{{ .RelPermalink }}" class="glossary-card">
+    <div class="glossary-term">{{ .Title }}</div>
+    <div class="glossary-def">{{ len .Pages }} {{ if eq (len .Pages) 1 }}entry{{ else }}entries{{ end }}</div>
+  </a>
+  {{ end }}
+</div>
+
+{{ end }}

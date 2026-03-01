@@ -1,0 +1,150 @@
+{{ define "content" }}
+
+{{/* ── Hero: left text, right artwork (Podcasty layout) ── */}}
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>{{ .Site.Params.podcastTitle }}</h1>
+      <p class="hero-description">{{ .Site.Params.podcastDescription }}</p>
+
+      <div class="listen-label">Listen &amp; Subscribe On:</div>
+      <div class="listen-buttons">
+        {{ with .Site.Params.social.spotify }}
+        <a href="{{ . }}" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg> Spotify</a>
+        {{ end }}
+        {{ with .Site.Params.social.apple }}
+        <a href="{{ . }}" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg> Apple</a>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="hero-artwork">
+      {{ if .Site.Params.showArt }}
+      <img src="{{ .Site.Params.showArt }}" alt="{{ .Site.Params.podcastTitle }} cover art">
+      {{ else }}
+      <span class="hero-artwork-placeholder">ᛉ</span>
+      {{ end }}
+    </div>
+  </div>
+</div>
+
+{{/* ── Latest Episodes: thumbnail grid ── */}}
+<div class="episode-row-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-title">Latest Episodes</span>
+      <a href="/episodes/" class="section-link">View all →</a>
+    </div>
+    {{ $episodes := where .Site.RegularPages "Section" "episodes" | first 5 }}
+    {{ $runes := slice "ᚱ" "ᛏ" "ᚦ" "ᛉ" "ᚠ" }}
+    <div class="episode-thumbs">
+      {{ range $i, $ep := $episodes }}
+      <a href="{{ $ep.RelPermalink }}" class="episode-thumb">
+        <div class="episode-thumb-art">
+          {{ if $ep.Params.thumb }}
+          <img src="{{ $ep.Params.thumb }}" alt="{{ $ep.Title }}">
+          {{ else }}
+          <span class="thumb-rune">{{ index $runes (mod $i (len $runes)) }}</span>
+          {{ end }}
+          <span class="episode-badge">S{{ printf "%02d" $ep.Params.season }}E{{ printf "%02d" $ep.Params.episode }}</span>
+        </div>
+        <div class="episode-thumb-title">{{ $ep.Title }}</div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</div>
+
+{{/* ── Patreon banner (left-aligned with rune watermark) ── */}}
+<div class="patreon-banner patreon-banner--left">
+  <div class="patreon-banner-card">
+    <div class="patreon-banner-inner">
+      <span class="patreon-eyebrow">Show must go on.</span>
+      <h2>Support us<br>on Patreon!</h2>
+      <p>Help keep the fires burning — join for the price of a cup of coffee a month.</p>
+      <a href="{{ .Site.Params.patreonURL | default "https://www.patreon.com" }}" class="btn btn-primary">Become a Patron</a>
+    </div>
+  </div>
+  <span class="patreon-rune-watermark">ᛉ</span>
+</div>
+
+{{/* ── Testimonial / pull-quote (hidden until launch — uncomment when testimonials exist) ── */}}
+{{/*
+{{ with .Site.Params.testimonial }}
+<div class="testimonial-section">
+  <div class="testimonial-inner">
+    <div class="testimonial-quote-icon">"</div>
+    <p class="testimonial-text">{{ . }}</p>
+    <div class="testimonial-author">
+      <div class="testimonial-avatar">🎧</div>
+      <div class="testimonial-name">{{ $.Site.Params.testimonialAuthor }}</div>
+      <div class="testimonial-role">{{ $.Site.Params.testimonialSource }}</div>
+    </div>
+  </div>
+</div>
+{{ end }}
+*/}}
+
+{{/* ── Guides strip ── */}}
+{{ $guides := where .Site.RegularPages "Section" "guides" | first 3 }}
+{{ if $guides }}
+<div class="episode-row-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-title">Guides &amp; Deep Dives</span>
+      <a href="/guides/" class="section-link">All guides →</a>
+    </div>
+    <div class="guides-grid guides-grid--compact">
+      {{ range $guides }}
+      <div class="guide-card">
+        <h3>{{ .Title }}</h3>
+        <p>{{ .Description | default .Summary }}</p>
+        <a href="{{ .RelPermalink }}" class="guide-card-link">Read guide</a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{/* ── Our Sponsors (uncomment when ready) ── */}}
+{{/*
+<div class="sponsors-section">
+  <div class="sponsors-inner">
+    <h2 class="sponsors-title">Our Sponsors</h2>
+    <p class="sponsors-sub">Brands that support us.</p>
+    <div class="sponsors-grid">
+      <div class="sponsor-logo">
+        <img src="/images/sponsors/sponsor-1.svg" alt="Sponsor name">
+      </div>
+      <div class="sponsor-logo">
+        <img src="/images/sponsors/sponsor-2.svg" alt="Sponsor name">
+      </div>
+      <div class="sponsor-logo">
+        <img src="/images/sponsors/sponsor-3.svg" alt="Sponsor name">
+      </div>
+      <div class="sponsor-logo">
+        <img src="/images/sponsors/sponsor-4.svg" alt="Sponsor name">
+      </div>
+      <div class="sponsor-logo">
+        <img src="/images/sponsors/sponsor-5.svg" alt="Sponsor name">
+      </div>
+      <div class="sponsor-logo">
+        <img src="/images/sponsors/sponsor-6.svg" alt="Sponsor name">
+      </div>
+    </div>
+  </div>
+</div>
+*/}}
+
+{{/* ── "Become a Sponsor" floating card CTA ── */}}
+<div class="sponsor-section">
+  <div class="sponsor-card">
+    <h3 class="sponsor-card-title">Become a Sponsor!</h3>
+    <p>Feel free to contact us for any kind of collaborations or sponsorships.</p>
+    <a href="/contact/" class="btn btn-outline sponsor-card-btn">Let's Talk →</a>
+    <span class="sponsor-card-note">All queries are replied within 24hrs.</span>
+  </div>
+</div>
+
+{{ end }}

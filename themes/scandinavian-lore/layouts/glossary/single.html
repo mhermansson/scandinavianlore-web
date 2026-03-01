@@ -1,0 +1,20 @@
+{{ define "content" }}
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <span class="page-eyebrow">Glossary</span>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.pronunciation }}
+    <div class="glossary-pronunciation">{{ . }}</div>
+    {{ end }}
+  </div>
+</div>
+
+<div class="content-body">
+  {{ .Content }}
+  <div class="content-back-link">
+    <a href="/glossary/" class="btn btn-outline">← Glossary</a>
+  </div>
+</div>
+
+{{ end }}

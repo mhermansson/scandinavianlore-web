@@ -1,0 +1,12 @@
+{{- if .IsHome -}}
+  {{ partial "jsonld-podcast.html" . }}
+  {{ partial "jsonld-breadcrumb.html" . }}
+{{- else if and .IsPage (eq .Section "episodes") -}}
+  {{ partial "jsonld-episode.html" . }}
+  {{ partial "jsonld-breadcrumb.html" . }}
+{{- else if and .IsPage (eq .Section "glossary") -}}
+  {{ partial "jsonld-glossary.html" . }}
+  {{ partial "jsonld-breadcrumb.html" . }}
+{{- else -}}
+  {{ partial "jsonld-breadcrumb.html" . }}
+{{- end -}}

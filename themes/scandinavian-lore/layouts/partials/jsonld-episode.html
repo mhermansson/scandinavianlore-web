@@ -1,0 +1,34 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastEpisode",
+  "name": {{ .Title | jsonify }},
+  "description": {{ .Description | jsonify }},
+  "url": {{ .Permalink | jsonify }},
+  "datePublished": {{ .Date.Format "2006-01-02" | jsonify }}
+  {{- with .Params.episode }},
+  "episodeNumber": {{ . }}
+  {{- end }}
+  {{- with .Params.season }},
+  "partOfSeason": {
+    "@type": "CreativeWorkSeason",
+    "seasonNumber": {{ . }}
+  }
+  {{- end }},
+  "partOfSeries": {
+    "@type": "PodcastSeries",
+    "name": {{ $.Site.Params.podcastTitle | jsonify }},
+    "url": {{ $.Site.BaseURL | jsonify }}
+  }
+  {{- $img := .Params.thumb | default .Params.hero_image | default .Site.Params.podcastImage -}}
+  {{- with $img }},
+  "image": {{ . | absURL | jsonify }}
+  {{- end }}
+  {{- with .Params.audio_url }},
+  "associatedMedia": {
+    "@type": "MediaObject",
+    "contentUrl": {{ . | jsonify }}
+  }
+  {{- end }}
+}
+</script>

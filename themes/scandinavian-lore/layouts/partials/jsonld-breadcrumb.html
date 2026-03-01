@@ -1,0 +1,27 @@
+{{- $items := slice -}}
+{{- $items = $items | append (dict "name" "Home" "url" (.Site.BaseURL | absURL)) -}}
+{{- if not .IsHome -}}
+  {{- if .Parent -}}
+    {{- if ne .Parent.RelPermalink "/" -}}
+      {{- $items = $items | append (dict "name" .Parent.Title "url" .Parent.Permalink) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $items = $items | append (dict "name" .Title "url" .Permalink) -}}
+{{- end -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{- range $i, $item := $items -}}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "ListItem",
+      "position": {{ add $i 1 }},
+      "name": {{ $item.name | jsonify }},
+      "item": {{ $item.url | jsonify }}
+    }
+    {{- end }}
+  ]
+}
+</script>

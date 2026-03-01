@@ -52,7 +52,7 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 1;
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
@@ -2243,33 +2243,34 @@ a.contact-card:hover { color: var(--text); }
 }
 
 /* ── Scroll-reveal animations ────────────────────────────────── */
-.ep-card,
-.glossary-card,
-.guide-card,
-.episode-thumb,
-.news-row,
-.sponsor-card {
+/* Only hide elements for reveal when JS is available */
+html.js .ep-card,
+html.js .glossary-card,
+html.js .guide-card,
+html.js .episode-thumb,
+html.js .news-row,
+html.js .sponsor-card {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.ep-card.reveal,
-.glossary-card.reveal,
-.guide-card.reveal,
-.episode-thumb.reveal,
-.news-row.reveal,
-.sponsor-card.reveal {
+html.js .ep-card.reveal,
+html.js .glossary-card.reveal,
+html.js .guide-card.reveal,
+html.js .episode-thumb.reveal,
+html.js .news-row.reveal,
+html.js .sponsor-card.reveal {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Staggered delays via nth-child */
-.ep-card:nth-child(2), .glossary-card:nth-child(2), .guide-card:nth-child(2), .episode-thumb:nth-child(2) { transition-delay: 0.06s; }
-.ep-card:nth-child(3), .glossary-card:nth-child(3), .guide-card:nth-child(3), .episode-thumb:nth-child(3) { transition-delay: 0.12s; }
-.ep-card:nth-child(4), .glossary-card:nth-child(4), .guide-card:nth-child(4), .episode-thumb:nth-child(4) { transition-delay: 0.18s; }
-.ep-card:nth-child(5), .glossary-card:nth-child(5), .guide-card:nth-child(5), .episode-thumb:nth-child(5) { transition-delay: 0.24s; }
-.ep-card:nth-child(n+6), .glossary-card:nth-child(n+6) { transition-delay: 0.3s; }
+html.js .ep-card:nth-child(2), html.js .glossary-card:nth-child(2), html.js .guide-card:nth-child(2), html.js .episode-thumb:nth-child(2) { transition-delay: 0.06s; }
+html.js .ep-card:nth-child(3), html.js .glossary-card:nth-child(3), html.js .guide-card:nth-child(3), html.js .episode-thumb:nth-child(3) { transition-delay: 0.12s; }
+html.js .ep-card:nth-child(4), html.js .glossary-card:nth-child(4), html.js .guide-card:nth-child(4), html.js .episode-thumb:nth-child(4) { transition-delay: 0.18s; }
+html.js .ep-card:nth-child(5), html.js .glossary-card:nth-child(5), html.js .guide-card:nth-child(5), html.js .episode-thumb:nth-child(5) { transition-delay: 0.24s; }
+html.js .ep-card:nth-child(n+6), html.js .glossary-card:nth-child(n+6) { transition-delay: 0.3s; }
 
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -2373,6 +2374,9 @@ a.contact-card:hover { color: var(--text); }
     border-radius: 0;
     min-width: 0;
     padding: 0 0 0 1rem;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
   }
 
   nav li ul a {
@@ -2430,4 +2434,54 @@ a.contact-card:hover { color: var(--text); }
 
 @media (max-width: 480px) {
   .sponsors-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Skip-to-content link ────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-dark);
+  color: var(--text-inv);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ── Focus-visible styles ────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html.js .ep-card,
+  html.js .glossary-card,
+  html.js .guide-card,
+  html.js .episode-thumb,
+  html.js .news-row,
+  html.js .sponsor-card {
+    opacity: 1;
+    transform: none;
+  }
+  .ep-single-hero {
+    background-attachment: scroll;
+  }
 }

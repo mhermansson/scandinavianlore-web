@@ -1,5 +1,5 @@
 baseURL = "https://scandinavianlorepod.com/"
-languageCode = "en-us"
+languageCode = "en-US"
 title = "Scandinavian Lore"
 theme = "scandinavian-lore"
 buildFuture = true
@@ -23,13 +23,14 @@ outputFormats.RSS.mediatype = "application/rss+xml"
   podcastSubCategory = ""
   podcastExplicit = "false"
   podcastLanguage = "en-us"
-  # podcastEmail = "hello@scandinavianlorepod.com"
+  podcastEmail = "hello@scandinavianlorepod.com"
 
   # Social links
   [params.social]
     spotify = "https://open.spotify.com/show/0UfNJ2DoIfIveU2hghm1Io"
     apple = "https://podcasts.apple.com/us/podcast/scandinavian-lore/id1234567890"  # TODO: replace with real Apple Podcasts URL
     twitter = "@ScandLorePod"
+    # youtube = "https://www.youtube.com/@ScandinavianLorePod"  # TODO: set up channel
 
   # Patreon
   patreonURL = "https://www.patreon.com"

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
 <head>
+  <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ if .IsHome }}{{ .Site.Params.podcastTitle }} — {{ .Site.Params.description }}{{ else }}{{ .Title }} | {{ .Site.Params.podcastTitle }}{{ end }}</title>
   <meta name="description" content="{{ .Description | default .Site.Params.description }}">
   <meta name="author" content="{{ .Site.Params.author }}">
+  <meta name="theme-color" content="#141210">
   <link rel="canonical" href="{{ .Permalink }}">
 
   {{/* Resolve image: page thumb > hero_image > site podcastImage */}}
@@ -54,12 +56,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}?v={{ now.Unix }}">
   <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="/episodes/index.xml" />
 
   {{ partial "jsonld.html" . }}
 </head>
 <body>
+
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
   <header>
     <div class="header-inner">
@@ -98,7 +102,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     {{ block "content" . }}{{ end }}
   </main>
 
@@ -111,8 +115,8 @@
       </div>
       <div class="footer-links">
         <div class="footer-links-group">
-          {{ with .Site.Params.social.spotify }}<a href="{{ . }}">Spotify</a>{{ end }}
-          {{ with .Site.Params.social.apple }}<a href="{{ . }}">Apple Podcasts</a>{{ end }}
+          {{ with .Site.Params.social.spotify }}<a href="{{ . }}" target="_blank" rel="noopener">Spotify</a>{{ end }}
+          {{ with .Site.Params.social.apple }}<a href="{{ . }}" target="_blank" rel="noopener">Apple Podcasts</a>{{ end }}
         </div>
         <div class="footer-links-group">
           <a href="/episodes/">Episodes</a>

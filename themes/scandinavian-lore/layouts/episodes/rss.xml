@@ -45,7 +45,7 @@
       <description>{{ .Description | html }}</description>
       <content:encoded><![CDATA[{{ .Content }}]]></content:encoded>
       {{- with .Params.audio_url }}
-      <enclosure url="{{ . }}" type="audio/mpeg" />
+      <enclosure url="{{ . }}" type="audio/mpeg" length="{{ $.Params.audio_length | default 0 }}" />
       {{- end }}
       {{- with .Params.episode }}
       <itunes:episode>{{ . }}</itunes:episode>

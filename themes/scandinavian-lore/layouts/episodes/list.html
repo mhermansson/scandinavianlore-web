@@ -37,7 +37,7 @@
             Share
           </button>
           <span class="share-pop">
-            <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+            <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title | urlquery }}" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" target="_blank" rel="noopener" aria-label="Facebook">f</a>
             <button onclick="copyLink('{{ .Permalink }}', this)" aria-label="Copy link">🔗</button>
           </span>

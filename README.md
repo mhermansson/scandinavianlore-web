@@ -60,10 +60,20 @@ runtime: "30 min"
 type: episodes
 description: "Brief description"
 tags: ["tag1", "tag2"]
+podcast_player_url: "https://your-host.com/embed/episode-id"
+audio_url: "https://your-host.com/audio/episode.mp3"
+audio_length: 28800000
 ---
 
 Your episode content in Markdown...
 ```
+
+**Podcast player embed (`podcast_player_url`):** When you sign up with a podcast
+host (Buzzsprout, Transistor, etc.), each episode gets an embeddable player URL.
+Add it to the episode's front matter and an iframe player appears in the hero
+section automatically. Leave it out and the hero renders without a player — no
+errors. The `audio_url` and `audio_length` (bytes) fields feed the podcast RSS
+`<enclosure>` tag for podcast apps; they're also optional until you have a host.
 
 **Guides:** Create new files in `content/guides/`
 ```yaml

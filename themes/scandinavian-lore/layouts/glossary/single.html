@@ -12,6 +12,25 @@
 
 <div class="content-body">
   {{ .Content }}
+
+  {{ with .Params.related_terms }}
+  <div class="glossary-related">
+    <strong>Related terms:</strong>
+    {{ range $i, $term := . }}{{ if $i }}, {{ end }}<a href="/glossary/{{ $term | urlize }}/">{{ $term }}</a>{{ end }}
+  </div>
+  {{ end }}
+
+  {{ with .Params.episodes }}
+  <div class="glossary-episodes">
+    <strong>Discussed in:</strong>
+    {{ range . }}
+      {{ with site.GetPage (printf "/episodes/%s" .) }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+  {{ end }}
+
   <div class="content-back-link">
     <a href="/glossary/" class="btn btn-outline">← Glossary</a>
   </div>
